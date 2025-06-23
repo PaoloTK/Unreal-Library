@@ -1428,6 +1428,7 @@ namespace UELib
                 {
                     stream.Write(DependsOffset);
                 }
+                goto skipThumbnailTableOffset;
 #if THIEF_DS || DEUSEX_IW
                 if (stream.Package.Build == GameBuild.BuildName.Thief_DS ||
                     stream.Package.Build == GameBuild.BuildName.DeusEx_IW)
@@ -1695,7 +1696,7 @@ namespace UELib
                         return;
                     }
 #endif
-                    stream.WriteArray(AdditionalPackagesToCook);
+                    // stream.WriteArray(AdditionalPackagesToCook);
                 }
 #if BORDERLANDS
                 if (stream.Package.Build == GameBuild.BuildName.Borderlands_GOTYE)
@@ -2040,6 +2041,7 @@ namespace UELib
                     DependsOffset = stream.ReadInt32();
                     Debug.Assert(DependsOffset <= HeaderSize); // May be equal when there are no items.
                 }
+                goto skipThumbnailTableOffset;
 #if THIEF_DS || DEUSEX_IW
                 if (stream.Package.Build == GameBuild.BuildName.Thief_DS ||
                     stream.Package.Build == GameBuild.BuildName.DeusEx_IW)
@@ -2306,7 +2308,7 @@ namespace UELib
                         return;
                     }
 #endif
-                    stream.ReadArray(out AdditionalPackagesToCook);
+                    // stream.ReadArray(out AdditionalPackagesToCook);
 #if DCUO
                     if (stream.Package.Build == GameBuild.BuildName.DCUO)
                     {

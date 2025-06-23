@@ -230,17 +230,17 @@ namespace UELib
                 }
             }
 #endif
-            if (stream.Version >= (uint)PackageObjectLegacyVersion.AddedComponentMapToExports &&
-                stream.Version < (uint)PackageObjectLegacyVersion.ComponentMapDeprecated
-#if ALPHAPROTOCOL
-                && stream.Package.Build != UnrealPackage.GameBuild.BuildName.AlphaProtocol
-#endif
-#if TRANSFORMERS
-                && (stream.Package.Build != BuildGeneration.HMS ||
-                    stream.LicenseeVersion < 37)
-#endif
-               )
-            {
+//             if (stream.Version >= (uint)PackageObjectLegacyVersion.AddedComponentMapToExports &&
+//                 stream.Version < (uint)PackageObjectLegacyVersion.ComponentMapDeprecated
+// #if ALPHAPROTOCOL
+//                 && stream.Package.Build != UnrealPackage.GameBuild.BuildName.AlphaProtocol
+// #endif
+// #if TRANSFORMERS
+//                 && (stream.Package.Build != BuildGeneration.HMS ||
+//                     stream.LicenseeVersion < 37)
+// #endif
+//                )
+//             {
                 if (ComponentMap == null)
                 {
                     stream.Write(0);
@@ -254,7 +254,7 @@ namespace UELib
                         stream.Write((int)keyValuePair.Value);
                     }
                 }
-            }
+            // }
 
             if (stream.Version < (uint)PackageObjectLegacyVersion.ExportFlagsAddedToExports)
             {
@@ -430,17 +430,17 @@ namespace UELib
                 }
             }
 #endif
-            if (stream.Version >= (uint)PackageObjectLegacyVersion.AddedComponentMapToExports &&
-                stream.Version < (uint)PackageObjectLegacyVersion.ComponentMapDeprecated
-#if ALPHAPROTOCOL
-                && stream.Package.Build != UnrealPackage.GameBuild.BuildName.AlphaProtocol
-#endif
-#if TRANSFORMERS
-                && (stream.Package.Build != BuildGeneration.HMS ||
-                    stream.LicenseeVersion < 37)
-#endif
-               )
-            {
+//             if (stream.Version >= (uint)PackageObjectLegacyVersion.AddedComponentMapToExports &&
+//                 stream.Version < (uint)PackageObjectLegacyVersion.ComponentMapDeprecated
+// #if ALPHAPROTOCOL
+//                 && stream.Package.Build != UnrealPackage.GameBuild.BuildName.AlphaProtocol
+// #endif
+// #if TRANSFORMERS
+//                 && (stream.Package.Build != BuildGeneration.HMS ||
+//                     stream.LicenseeVersion < 37)
+// #endif
+//                )
+//             {
                 stream.Read(out int componentCount);
                 ComponentMap = new UMap<UName, UPackageIndex>(componentCount);
                 for (int i = 0; i < componentCount; ++i)
@@ -449,7 +449,7 @@ namespace UELib
                     stream.Read(out int value);
                     ComponentMap.Add(key, value);
                 }
-            }
+            // }
 
             if (stream.Version < (uint)PackageObjectLegacyVersion.ExportFlagsAddedToExports)
             {
